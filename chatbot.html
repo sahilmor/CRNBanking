@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Chatbot</title>
+    <style>.chat-container {
+        width: 300px;
+        margin: 0 auto;
+        display: flex;
+        font-family: sans-serif;
+    }
+    
+    #chat-box {
+        border: 1px solid #ccc;
+        padding: 10px;
+    }
+    
+    .message {
+        margin-bottom: 10px;
+    }
+    
+    .user {
+        color: blue;
+    }
+    img{
+        width: 50%;
+    }
+    .bot {
+        color: green;
+    }
+    li{
+        list-style: none;
+        border: 1px solid rgb(97, 243, 97);
+        line-height: 200%;
+        margin: 2%;
+        background-color: azure;
+        border-radius: 20px;
+        padding-left: .5%;
+        width: 22%;
+    }
+    </style><!-- You can style the chatbot interface in a separate CSS file -->
+</head>
+<body>
+    <body>
+        <div id="chat-container">
+
+            <div id="chat-box">
+                <div id="welcome-message">Hi there, I am Team CRN's official chatbot. How can I assist you?</div>
+                <div id="options">
+                    
+                    <ul>
+                        <li onclick="sendOption('How do I open a bank account?')">How do I open a bank account?</li>
+                        <li onclick="sendOption('What documents do I need to apply for a loan?')">What documents do I need to apply for a loan?</li>
+                        <li onclick="sendOption('What are the interest rates on savings accounts?')">What are the interest rates on savings accounts?</li>
+                        <li onclick="sendOption('What should I do if I lose my debit card?')">What should I do if I lose my debit card?</li>
+                        <li onclick="sendOption('Can I get assistance with budgeting or financial planning?')">Can I get assistance with budgeting or financial planning?</li>
+                    </ul>
+                </div>
+                <div>
+                 
+                </div>
+            </div>
+            
+        </div>
+    
+        <script>
+            const chatBox = document.getElementById("chat-box");
+            const userInput = document.getElementById("user-input");
+    
+            function sendMessage() {
+                const message = userInput.value.trim();
+                if (message !== "") {
+                    appendMessage("User", message);
+                    respondToUser(message);
+                    userInput.value = "";
+                }
+            }
+    
+            function sendOption(option) {
+                appendMessage("User", option);
+                respondToUser(option);
+            }
+    
+            function respondToUser(option) {
+                let response;
+    
+                // Check user selected option and provide corresponding response
+                switch (option) {
+                    case "How do I open a bank account?":
+                        response = "To open a bank account, you'll need to visit one of our branches with valid identification, such as a driver's license or passport. Our staff will assist you in selecting the type of account that best fits your needs and guide you through the application process.";
+                        break;
+                    case "What documents do I need to apply for a loan?":
+                        response = "The required documents for a loan application vary depending on the type of loan you're applying for, but generally, you'll need proof of income, identification documents, and details of any assets or liabilities. Our staff will provide you with a checklist tailored to your specific loan application.";
+                        break;
+                    case "What are the interest rates on savings accounts?":
+                        response = "Our interest rates on savings accounts vary depending on the type of account and prevailing market conditions. You can find our current interest rates on our website or by contacting our customer service team.";
+                        break;
+                    case "What should I do if I lose my debit card?":
+                        response = "If you lose your debit card, please contact our customer service hotline immediately to report it lost or stolen. Our staff will deactivate the card to prevent unauthorized transactions and assist you in obtaining a replacement card.";
+                        break;
+                    case "Can I get assistance with budgeting or financial planning?":
+                        response = "Yes, we offer assistance with budgeting and financial planning through our financial advisory services. Our advisors can help you create a personalized budget, set financial goals, and develop a plan to achieve them.";
+                        break;
+                    default:
+                        response = "I'm sorry, I didn't understand that.";
+                }
+    
+                appendMessage("Bot", response);
+            }
+    
+            function appendMessage(sender, message) {
+                const messageElement = document.createElement("div");
+                messageElement.textContent = ${sender}: ${message};
+                chatBox.appendChild(messageElement);
+            }
+        </script>
+</body>
+</html>
